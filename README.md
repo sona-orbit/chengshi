@@ -3,8 +3,8 @@
 Website for **Chengshi**, an iPhone app for personal timing and reflection with the traditional Chinese calendar.
 Enter your birth date once; each evening it shows tomorrow's energy and which of the twelve two-hour periods suit you,
 helps you pick a time for a matter, and lets you check its suggestions against your own days.
-The chart calculation is verified against reference implementations; the scores follow the app's own rules
-and are a reference, not a prediction.
+The chart calculation is checked chart by chart against reference implementations; the scores follow Chengshi's
+scoring method, shown item by item in the app.
 
 Served by GitHub Pages at https://sona-orbit.github.io/chengshi/
 
