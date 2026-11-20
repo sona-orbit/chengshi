@@ -169,10 +169,14 @@ section { padding: 3.5rem 0; }
 .places span { color: var(--muted); font-size: 0.9375rem; }
 .places em { margin-left: auto; font-style: normal; font-weight: 800; color: var(--tone); }
 
-.bar { display: grid; grid-template-columns: 9rem 1fr 3rem; align-items: center; gap: 0.75rem; margin-bottom: 0.625rem; font-size: 0.9375rem; }
-.bar i { height: 1.375rem; border: 0.125rem solid var(--ink); border-radius: 0.5rem; background: linear-gradient(90deg, var(--brand) var(--w), var(--soft) var(--w)); }
-.bar.base i { background: linear-gradient(90deg, var(--muted) var(--w), var(--soft) var(--w)); }
-.bar b { font-family: var(--num); }
+/* one real screen in a phone-shaped card, with a flat colour block behind it (like the store screenshots) */
+.phone { position: relative; isolation: isolate; margin: 0; justify-self: center; width: min(18rem, 78vw); --c: var(--brand); }
+.phone::before { content: ""; position: absolute; z-index: -1; inset: 0.875rem -0.875rem -0.875rem 0.875rem; background: var(--c); border: var(--outline); border-radius: 2.5rem; }
+.phone-frame { background: #1B1B1B; border: 0.125rem solid var(--ink); border-radius: 2.5rem; padding: 0.5rem; }
+.phone img { display: block; width: 100%; border-radius: 2rem; background: #F6F3EC; }
+.feature-shot { display: grid; justify-items: center; padding: 0.5rem 0 1rem; }
+.feature-shot .demo-tag { right: 18%; }
+#f-board .phone { --c: var(--earth); } #f-record .phone { --c: var(--indigo); }
 
 .demo-learn ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 0.75rem; }
 .demo-learn li { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9375rem; font-weight: 600; }
@@ -216,6 +220,42 @@ section { padding: 3.5rem 0; }
 .end picture { width: 6.875rem; }
 .end-links { display: flex; gap: 1rem; margin: 0.75rem 0 0; font-weight: 600; }
 
+/* link to the screens tour, under the features */
+.tour-cta { display: flex; align-items: center; gap: 1.5rem; margin-top: 2rem; background: var(--tint-good); border: var(--outline); border-radius: var(--radius); padding: 1.5rem 1.75rem; }
+.tour-cta picture { flex: none; width: 6.5rem; }
+.tour-cta h3 { font-size: 1.5rem; font-weight: 900; }
+.tour-cta p { margin-bottom: 1rem; max-width: 36em; }
+.btn { display: inline-block; font-family: var(--round); font-weight: 800; text-decoration: none; background: var(--brand); color: var(--on-brand); border: var(--outline); border-radius: 999rem; padding: 0.5rem 1.375rem; }
+.btn::after { content: " →"; }
+.btn:hover { background: var(--brand-text); }
+
+/* ---- screens tour: one feature per section, text and one phone, sides alternate ---- */
+.tour { padding: 2.5rem 0 1rem; }
+.tour-head { display: flex; align-items: center; gap: 1.25rem; max-width: 50rem; margin-bottom: 1.5rem; }
+.tour-head picture { flex: none; width: 7.5rem; }
+.tour h1 { font-size: clamp(2rem, 1.6rem + 1.6vw, 2.75rem); font-weight: 900; }
+.demo-data { display: inline-block; font-size: 0.875rem; font-weight: 700; color: var(--muted); background: var(--card); border: 0.125rem dashed var(--muted); border-radius: 999rem; padding: 0.125rem 0.75rem; margin: 0 0 0.75rem; }
+.ch-nav { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+.ch-nav a { font-family: var(--round); font-weight: 800; font-size: 0.9375rem; color: var(--ink); text-decoration: none; background: var(--card); border: 0.125rem solid var(--ink); border-radius: 999rem; padding: 0.25rem 0.875rem; }
+.ch-nav a:hover { background: var(--soft); }
+.tour-ch { padding: 2.5rem 0 1rem; border-top: var(--outline); }
+.ch-title { margin: 0 0 0.5rem; }
+.ch-title .tab { font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem); font-weight: 900; padding: 0.25rem 1.125rem 0.25rem 0.375rem; background: var(--c); color: #1B1B1B; border-width: 0.15625rem; }
+.ch-title .tab .doodle img { width: 2.25rem; height: auto; }
+.ch-wood { --c: var(--wood); } .ch-earth { --c: var(--earth); } .ch-fire { --c: var(--fire); } .ch-indigo { --c: var(--indigo); }
+.tour-ch .phone { --c: inherit; }
+.tour-item { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; padding: 2rem 0 2.5rem; }
+.tour-item + .tour-item { border-top: 0.125rem dashed var(--line); }
+.tour-item.flip .tour-text { order: 2; }
+.tour-text { max-width: 30rem; justify-self: end; }
+.tour-item.flip .tour-text { justify-self: start; }
+.tour-text h3 { font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem); font-weight: 900; }
+.tour-text p { margin: 0; }
+.tour-end { display: flex; align-items: center; gap: 1.5rem; margin: 1.5rem 0 3rem; background: var(--card); border: var(--outline); border-radius: var(--radius); padding: 1.5rem 1.75rem; }
+.tour-end picture { flex: none; width: 6.875rem; }
+.tour-end h2 { font-size: 1.5rem; font-weight: 900; }
+.tour-end .cta { margin-top: 1rem; }
+
 /* ---- documents: support, privacy, terms ---- */
 .doc { padding: 2.5rem 0 3.5rem; }
 .doc-wrap { max-width: 50rem; }
@@ -255,6 +295,9 @@ section { padding: 3.5rem 0; }
   .layers { grid-template-columns: 1fr; }
   .hero-art { width: min(22rem, 92%); }
   .top-nav .nav-in { display: none; }
+  .tour-item { grid-template-columns: 1fr; gap: 1.75rem; }
+  .tour-item.flip .tour-text { order: 0; }
+  .tour-text, .tour-item.flip .tour-text { justify-self: start; }
 }
 @media (max-width: 40rem) {
   body { font-size: 1rem; }
@@ -269,12 +312,16 @@ section { padding: 3.5rem 0; }
   .hours { grid-template-columns: repeat(4, 1fr); row-gap: 0.875rem; }
   .demo-places { grid-template-columns: 1fr; }
   .rose { width: 9rem; margin-inline: auto; }
-  .bar { grid-template-columns: 6.5rem 1fr 2.75rem; }
   .facts, .plan-grid, .demo-learn ol { grid-template-columns: 1fr; }
   .sec-head.with-art picture, .doc-head picture { width: 5rem; }
   .foot-grid { grid-template-columns: 1fr; }
   .foot-links { justify-content: flex-start; }
   .end { flex-direction: column; text-align: center; }
+  .tour-cta, .tour-end { flex-direction: column; align-items: flex-start; padding: 1.25rem; }
+  .tour-cta picture, .tour-end picture, .tour-head picture { width: 5rem; }
+  .tour-head { align-items: flex-start; }
+  .phone { width: min(15rem, 76vw); }
+  .top-nav .nav-pv { display: none; }
   .end-links { justify-content: center; }
 }
 @media (prefers-reduced-motion: reduce) {
