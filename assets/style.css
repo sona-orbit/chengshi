@@ -330,3 +330,10 @@ section { padding: 3.5rem 0; }
 }
 .doc section.card { padding: 1.25rem 1.5rem; }
 .card > .doodle { flex: none; }
+
+/* 新手檢視 CSW-5（2026-11-24）：示範卡小字與星號的對比拉到 4.5 以上 */
+.two b { color: color-mix(in srgb, var(--good) 72%, var(--ink)); }
+.star { color: #8A5A00; -webkit-text-stroke: 0; }
+.person.el-earth { background: #9A6A0A; } .person.el-fire { background: #B03A24; } .person.el-wood { background: #226B50; }
+.person small { opacity: 1; }
+@media (prefers-color-scheme: dark) { .star { color: var(--earth); } }
