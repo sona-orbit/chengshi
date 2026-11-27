@@ -8,7 +8,8 @@ scoring method, shown item by item in the app.
 
 Served by GitHub Pages at https://sona-orbit.github.io/chengshi/
 
-- Home, support, privacy and terms pages in Traditional Chinese (default) and English (`/en/`)
+- Home, screens tour, support, privacy and terms pages in ten languages: Traditional Chinese (default), and
+  `/zh-hans/`, `/en/`, `/ja/`, `/ko/`, `/es/`, `/de/`, `/fr/`, `/pt-br/`, `/vi/`
 - Static HTML and CSS, no build step on this repository
-- The app is in Traditional Chinese for now
+- The app follows the iPhone's language (the same ten)
 - Published by Sona Orbit. To report a problem, use 回報問題 (Report a problem) in the app's Settings.

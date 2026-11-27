@@ -13,7 +13,18 @@
   --sans: system-ui, -apple-system, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", "Segoe UI", sans-serif;
   color-scheme: light dark;
 }
-:lang(en) { --round: ui-rounded, "SF Pro Rounded", system-ui, "PingFang TC", sans-serif; }
+:lang(en), :lang(es), :lang(de), :lang(fr), :lang(pt), :lang(vi) { --round: ui-rounded, "SF Pro Rounded", system-ui, "PingFang TC", sans-serif; }
+/* CJK pages each get their own glyph forms (a Japanese page must not draw kanji with the Chinese fonts) */
+:lang(zh-Hans) { --round: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+  --sans: system-ui, -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif; }
+:lang(ja) { --round: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", system-ui, sans-serif;
+  --sans: system-ui, -apple-system, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif; }
+:lang(ko) { --round: "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+  --sans: system-ui, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif; }
+:lang(ko) p, :lang(ko) li, :lang(ko) h1, :lang(ko) h2, :lang(ko) h3 { word-break: keep-all; }
+/* long German and French words: hyphenate body text and headings instead of overflowing on a phone */
+:lang(de), :lang(fr), :lang(es), :lang(pt), :lang(vi) { overflow-wrap: break-word; }
+:lang(de) :is(p, li, h1, h2, h3, summary), :lang(fr) :is(p, li, h1, h2, h3, summary) { hyphens: auto; }
 @media (prefers-color-scheme: dark) {
   :root {
     --paper: #14161A; --card: #1F2229; --soft: #262930; --line: #33363E;
@@ -47,10 +58,25 @@ button { font: inherit; color: inherit; }
 .brand { display: flex; align-items: center; gap: 0.625rem; text-decoration: none; color: var(--ink); font-family: var(--round); font-weight: 800; font-size: 1.25rem; }
 .brand img { border-radius: 0.5rem; border: 0.125rem solid var(--ink); }
 .top-nav { display: flex; gap: 0.25rem; margin-left: auto; }
-.top-nav a, .lang { color: var(--ink); text-decoration: none; font-weight: 600; font-size: 0.9375rem; padding: 0.375rem 0.75rem; border-radius: 999rem; border: 0.125rem solid transparent; }
-.top-nav a:hover, .lang:hover { border-color: var(--ink); background: var(--card); }
+.top-nav a, .lang-menu summary { color: var(--ink); text-decoration: none; font-weight: 600; font-size: 0.9375rem; padding: 0.375rem 0.75rem; border-radius: 999rem; border: 0.125rem solid transparent; white-space: nowrap; }
+.top-nav a:hover, .lang-menu summary:hover { border-color: var(--ink); background: var(--card); }
 .top-nav a[aria-current] { background: var(--soft); }
-.lang { border-color: var(--ink); }
+/* language menu: a globe and the current language; opens a list of the ten */
+.lang-menu { position: relative; flex: none; }
+.lang-menu summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 0.375rem; border-color: var(--ink); }
+.lang-menu summary::-webkit-details-marker { display: none; }
+.lang-menu[open] summary { background: var(--card); }
+.globe { width: 1rem; height: 1rem; border: 0.125rem solid currentColor; border-radius: 50%; position: relative; display: inline-block; flex: none; }
+.globe::before { content: ""; position: absolute; inset: -0.125rem 0.1875rem; border: 0.125rem solid currentColor; border-radius: 50%; border-block: 0; }
+.globe::after { content: ""; position: absolute; inset-inline: 0; top: calc(50% - 0.0625rem); border-top: 0.125rem solid currentColor; }
+.lang-menu nav { position: absolute; right: 0; top: calc(100% + 0.5rem); z-index: 6; display: grid; min-width: 12rem; padding: 0.375rem; background: var(--card); border: var(--outline); border-radius: 1rem; }
+.lang-menu nav a { color: var(--ink); text-decoration: none; padding: 0.375rem 0.75rem; border-radius: 0.625rem; font-weight: 600; font-size: 0.9375rem; }
+.lang-menu nav a:hover { background: var(--soft); }
+.lang-menu nav a[aria-current] { background: var(--tint-good); }
+.foot-langs { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; font-size: 0.875rem; }
+.foot-langs a { color: var(--muted); }
+.foot-langs a[aria-current] { color: var(--ink); font-weight: 700; text-decoration: none; }
+.nf-langs { justify-content: center; margin-top: 1.5rem; }
 
 /* ---- hero ---- */
 .hero { padding: 3.5rem 0 3rem; overflow: hidden; }
@@ -288,6 +314,10 @@ section { padding: 3.5rem 0; }
 .foot-links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; justify-content: flex-end; font-weight: 600; }
 .foot-copy { grid-column: 1 / -1; color: var(--muted); margin: 0; font-size: 0.875rem; }
 
+/* longer nav words (fr, de, es, pt, vi): the in-page links go to the menu-less layout earlier */
+@media (max-width: 72rem) {
+  :is(:lang(fr), :lang(de), :lang(es), :lang(pt), :lang(vi)) .top-nav .nav-in { display: none; }
+}
 /* ---- phones ---- */
 @media (max-width: 56rem) {
   .hero-grid, .feature, .private-grid { grid-template-columns: 1fr; gap: 1.75rem; }
@@ -303,7 +333,8 @@ section { padding: 3.5rem 0; }
   body { font-size: 1rem; }
   .top-bar { gap: 0.5rem; }
   .top-nav { margin-left: auto; }
-  .top-nav a, .lang { padding: 0.25rem 0.5rem; font-size: 0.875rem; }
+  .top-nav a, .lang-menu summary { padding: 0.25rem 0.5rem; font-size: 0.875rem; }
+  .lang-cur { display: none; }
   .brand span { font-size: 1.125rem; }
   .hero { padding-top: 2rem; }
   .bubble { position: relative; right: auto; top: auto; margin: 0 0 1rem; max-width: none; }
@@ -324,6 +355,8 @@ section { padding: 3.5rem 0; }
   .top-nav .nav-pv { display: none; }
   .end-links { justify-content: center; }
 }
+/* very narrow phones (320px): keep only the support link next to the language menu */
+@media (max-width: 22.5rem) { .top-nav .nav-sc { display: none; } }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .hr:hover { transform: none; }
