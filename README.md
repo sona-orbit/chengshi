@@ -15,6 +15,12 @@ Chengshi is an iPhone app for personal timing and reflection with the traditiona
 - **Track record**: note how each day went; conclusions at 14, 30 and 60 check-ins compare the match with a chance baseline.
 - **Seventeen short lessons** with Xiaoqi, using your real chart. No account, no server of ours, no analytics SDK; AI explanations are optional and off by default.
 
+## Guides
+
+- [The 12 Chinese Hours of the Day: Times, Animals and How to Read Them](https://sona-orbit.github.io/chengshi/en/blog/twelve-chinese-hours-chart/)
+- [How to Read a Qimen Dunjia Chart: Palaces, Doors, and Signs](https://sona-orbit.github.io/chengshi/en/blog/qimen-dunjia-chart-basics/)
+- [How to Pick a Good Time to Move or Sign a Contract with Qimen Dunjia](https://sona-orbit.github.io/chengshi/en/blog/pick-a-time-for-moving-or-signing/)
+
 ## About this repository
 
 - Source of the Chengshi website, served by GitHub Pages at https://sona-orbit.github.io/chengshi/
